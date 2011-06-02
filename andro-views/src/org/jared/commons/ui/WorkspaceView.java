@@ -54,7 +54,7 @@ import android.widget.Scroller;
         private float wallpaperOffset;
         private boolean wallpaperLoaded;
         private boolean firstWallpaperLayout = true;
-        private static final int TAB_INDICATOR_HEIGHT_PCT = 2;
+        private static final int TAB_INDICATOR_HEIGHT_PCT = 1;
         private RectF selectedTab;
 
 
@@ -155,7 +155,9 @@ import android.widget.Scroller;
             mMaximumVelocity = configuration.getScaledMaximumFlingVelocity();
 
             selectedTabPaint = new Paint();
-            selectedTabPaint.setColor(Color.RED);
+            //selectedTabPaint.setColor(Color.rgb(0x99, 0xC2, 0x24)/*Color.CYAN*/);
+            //selectedTabPaint.setColor(Color.RED);
+            selectedTabPaint.setColor(Color.rgb(0x98, 0xc8, 0xe8));            
             selectedTabPaint.setStyle(Paint.Style.FILL_AND_STROKE);
 
             tabIndicatorBackgroundPaint = new Paint();
@@ -191,7 +193,7 @@ import android.widget.Scroller;
          * 
          * @return The index of the currently displayed screen.
          */
-        int getCurrentScreen() {
+        public int getCurrentScreen() {
             return currentScreen;
         }
 
@@ -205,7 +207,7 @@ import android.widget.Scroller;
             if (!scroller.isFinished()) scroller.abortAnimation();
             currentScreen = Math.max(0, Math.min(theCurrentScreen, getChildCount()));
             scrollTo(currentScreen * getWidth(), 0);
-            Log.d("workspace", "setCurrentScreen: width is " + getWidth());
+            //Log.d("workspace", "setCurrentScreen: width is " + getWidth());
             invalidate();
         }
 
@@ -399,7 +401,7 @@ import android.widget.Scroller;
          */
         @Override
         public boolean onInterceptTouchEvent(MotionEvent ev) {
-            Log.d("workspace","Intercepted a touch event");
+//            Log.d("workspace","Intercepted a touch event");
             if (locked) {
                 return true;
             }
@@ -643,7 +645,7 @@ import android.widget.Scroller;
         private void snapToDestination() {
             final int screenWidth = getWidth();
             final int whichScreen = (getScrollX() + (screenWidth / 2)) / screenWidth;
-            Log.d("workspace", "snapToDestination");
+            //Log.d("workspace", "snapToDestination");
             scrollToScreen(whichScreen);
         }
 
@@ -657,7 +659,7 @@ import android.widget.Scroller;
         }
 
         private void scrollToScreen(int whichScreen, boolean immediate){
-            Log.d("workspace", "snapToScreen=" + whichScreen);
+            //Log.d("workspace", "snapToScreen=" + whichScreen);
 
             boolean changingScreens = whichScreen != currentScreen;
 
@@ -670,7 +672,7 @@ import android.widget.Scroller;
 
             final int newX = whichScreen * getWidth();
             final int delta = newX - getScrollX();
-            Log.d("workspace", "newX=" + newX + " scrollX=" + getScrollX() + " delta=" + delta);
+            //Log.d("workspace", "newX=" + newX + " scrollX=" + getScrollX() + " delta=" + delta);
             scroller.startScroll(getScrollX(), 0, delta, 0, immediate ? 0 : Math.abs(delta) * 2);
             invalidate();
         }
