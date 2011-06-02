@@ -2,4 +2,23 @@
 <resources>
     <string name="hello">Hello World, HomeActivity!</string>
     <string name="app_name">fIRC 3</string>
+    <string name="profile_title_new">New profile</string>
+    <string name="profile_title_edit">Edit profile</string>
+    <string name="serverlist_title">Server overview</string>
+    <string name="chat_title">Chat overview</string>    
+    <string name="profile_network_prompt">Choose network</string>
+    <string name="profile_server_prompt">Choose server</string>
+    <string name="alert_dialog_ok">I Agree</string>    
+    <string name="alert_dialog_cancel">I Disagree</string>    
+    <string name="alert_dialog_title">Disclaimer</string>
+    <string name="alert_dialog_msg">This application connects to unmoderated chat networks, with potentially adult conversation.\n\nChildren under 18 years of age should have parents permission, and/or be supervised by a parent prior to using fIRC.\n\nBy using this software, you agree to not hold the developer liable for any and all problems or damages that may arise from fIRC\'s installation or use.\n\nThis software is provided as is, with no warranty expressed or implied.</string>    
+    <string name="encoding_prompt">Choose an encoding</string>
+    <string-array name="encoding_array">
+    	<item>UTF-8</item>
+    	<item>ISO-8859-1</item>
+		<item>US-ASCII</item>
+		<item>UTF-16</item>
+		<item>UTF-16BE</item>
+		<item>UTF-16LE</item>		
+    </string-array>
 </resources>

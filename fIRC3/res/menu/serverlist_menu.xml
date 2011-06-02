@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+	xmlns:android="http://schemas.android.com/apk/res/android">
+  	<item android:id="@+id/serverlist_new_profile" android:title="New profile" android:icon="@drawable/ic_menu_add"></item>
+    <item android:id="@+id/serverlist_connect_all" android:title="Connect all profiles" android:icon="@drawable/ic_menu_start_conversation"></item>
+    <item android:id="@+id/serverlist_disconnect_all" android:title="Disconnect all profiles" android:icon="@drawable/ic_menu_end_conversation"></item>    
+    <item android:id="@+id/serverlist_help" android:title="Help" android:icon="@drawable/ic_menu_help"></item>
+</menu>

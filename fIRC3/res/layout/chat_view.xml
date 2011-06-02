@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">    
+    <RelativeLayout     
+        style="?android:attr/windowTitleBackgroundStyle"
+        android:layout_width="fill_parent"
+        android:layout_height="?android:attr/windowTitleSize">  
+        <TextView         
+            style="?android:attr/windowTitleStyle"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@null"
+            android:fadingEdge="horizontal"
+            android:scrollHorizontally="true"
+            android:gravity="center_vertical"
+        	android:text="#PCSX2 - Keep the soul alive!"
+        	android:id="@+id/chat_titlebar"/>
+    </RelativeLayout>
+    <FrameLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:foregroundGravity="fill_horizontal|top"
+        android:foreground="?android:attr/windowContentOverlay">
+        <RelativeLayout 
+	        android:id="@+id/relativeLayout1" 
+	        android:layout_width="wrap_content" 
+	        android:layout_height="wrap_content">
+	        <ListView android:id="@+id/chat_list"
+				        android:layout_width="fill_parent"
+				        android:layout_height="fill_parent"
+				        android:stackFromBottom="true"
+				        android:transcriptMode="normal"
+				        android:fastScrollEnabled="true"/>	        
+	    </RelativeLayout>
+    </FrameLayout>
+</LinearLayout>

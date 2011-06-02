@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+         android:orientation="vertical"
+         android:layout_width="fill_parent"
+         android:layout_height="fill_parent">
+	     <ListView android:id="@id/android:list"
+	               android:layout_width="fill_parent"
+	               android:layout_height="fill_parent"
+	               android:layout_weight="1"/>
+	     <TextView android:id="@id/android:empty"
+	               android:layout_width="fill_parent"
+	               android:layout_height="fill_parent"
+	               android:textSize="20sp"
+	               android:text="No profiles found\n\nIf you are running this application for the first time, you will need to create a new profile. Here you will be able to set your nickname and select the server of your preference.\n\nInstructions:\n- Press menu\n- Click on New profile"/>
+ </LinearLayout>

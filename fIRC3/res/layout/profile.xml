@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="fill_parent">
+      <ScrollView 
+      	android:id="@+id/scrollView1"
+      	android:layout_width="fill_parent"
+      	android:layout_height="fill_parent"
+      	android:layout_above="@+id/linearLayout2">
+	      	<LinearLayout 
+	      	android:id="@+id/linearLayout2" 
+	       	android:layout_width="fill_parent" 
+	       	android:layout_height="fill_parent"
+	       	android:orientation="vertical">	       	
+		       	<LinearLayout
+			       	android:layout_width="fill_parent" 
+			       	android:layout_height="wrap_content"
+			       	android:paddingLeft="6px"
+  					android:paddingRight="6px"
+			       	android:orientation="vertical"
+			       	android:layout_weight="1">
+	       			<TextView 
+	       			android:text="Profile name" 
+	       			android:layout_width="wrap_content" 
+	       			android:layout_height="wrap_content"/>
+		       		<EditText 					
+		       			android:id="@+id/profile_name"
+						android:layout_height="wrap_content" 
+						android:layout_width="fill_parent"	
+						android:hint="Enter profile name"/>	
+	       		</LinearLayout>
+	       			       			       		
+	       		<RelativeLayout     
+			        style="?android:attr/windowTitleBackgroundStyle"
+			        android:layout_width="fill_parent"
+			        android:layout_height="?android:attr/windowTitleSize">  
+			        <TextView         
+			            style="?android:attr/windowTitleStyle"
+			            android:layout_width="fill_parent"
+			            android:layout_height="fill_parent"
+			            android:background="@null"
+			            android:fadingEdge="horizontal"
+			            android:scrollHorizontally="true"
+			            android:gravity="center_vertical"
+			        	android:text="User settings"/>
+			    </RelativeLayout>
+			    
+			    <LinearLayout
+		       	android:layout_width="fill_parent" 
+		       	android:layout_height="wrap_content"
+		       	android:paddingLeft="6px"
+  					android:paddingRight="6px"
+		       	android:orientation="vertical"
+		       	android:layout_weight="1">
+	       			<TextView 
+	       			android:text="Nickname" 
+	       			android:layout_width="wrap_content" 
+	       			android:layout_height="wrap_content"/>
+		       		<EditText 					
+		       			android:id="@+id/profile_nickname"
+						android:layout_height="wrap_content" 
+						android:layout_width="fill_parent"	
+						android:hint="Enter nickname"/>	
+	       		</LinearLayout>
+	       		<LinearLayout
+		       	android:layout_width="fill_parent" 
+		       	android:layout_height="wrap_content"
+		       	android:paddingLeft="6px"
+  					android:paddingRight="6px"
+		       	android:orientation="vertical"
+		       	android:layout_weight="1">
+	       			<TextView 
+	       			android:text="Alt. nick (used when nickname is in use)" 
+	       			android:layout_width="wrap_content" 
+	       			android:layout_height="wrap_content"/>
+		       		<EditText 					
+		       			android:id="@+id/profile_altnick"
+						android:layout_height="wrap_content" 
+						android:layout_width="fill_parent"	
+						android:hint="Enter alternative nickname"/>	
+	       		</LinearLayout>
+	       		
+	       		<RelativeLayout     
+			        style="?android:attr/windowTitleBackgroundStyle"
+			        android:layout_width="fill_parent"
+			        android:layout_height="?android:attr/windowTitleSize">  
+			        <TextView         
+			            style="?android:attr/windowTitleStyle"
+			            android:layout_width="fill_parent"
+			            android:layout_height="fill_parent"
+			            android:background="@null"
+			            android:fadingEdge="horizontal"
+			            android:scrollHorizontally="true"
+			            android:gravity="center_vertical"
+			        	android:text="Server wizard (Autofills server settings)"/>
+			    </RelativeLayout>
+	       		
+	       		 <LinearLayout
+		       	android:layout_width="fill_parent" 
+		       	android:layout_height="wrap_content"
+		       	android:paddingLeft="6px"
+  					android:paddingRight="6px"
+		       	android:orientation="vertical"
+		       	android:layout_weight="1">
+	       			<TextView 
+	       			android:text="Network" 
+	       			android:layout_width="wrap_content" 
+	       			android:layout_height="wrap_content"/>
+		       		<Spinner 
+				        android:id="@+id/profile_network_spinner"
+				        android:layout_width="fill_parent"
+				        android:layout_height="wrap_content"
+				        android:prompt="@string/profile_network_prompt"/>
+	       		</LinearLayout>
+	       		
+	       		 <LinearLayout
+		       	android:layout_width="fill_parent" 
+		       	android:layout_height="wrap_content"
+		       	android:paddingLeft="6px"
+  					android:paddingRight="6px"
+		       	android:orientation="vertical"
+		       	android:layout_weight="1">
+	       			<TextView 
+	       			android:text="Server" 
+	       			android:layout_width="wrap_content" 
+	       			android:layout_height="wrap_content"/>
+		       		<Spinner 
+				        android:id="@+id/profile_server_spinner"
+				        android:layout_width="fill_parent"
+				        android:layout_height="wrap_content"
+				        android:prompt="@string/profile_server_prompt"/>
+	       		</LinearLayout>
+	       			       		
+			    <RelativeLayout     
+			        style="?android:attr/windowTitleBackgroundStyle"
+			        android:layout_width="fill_parent"
+			        android:layout_height="?android:attr/windowTitleSize">  
+			        <TextView         
+			            style="?android:attr/windowTitleStyle"
+			            android:layout_width="fill_parent"
+			            android:layout_height="fill_parent"
+			            android:background="@null"
+			            android:fadingEdge="horizontal"
+			            android:scrollHorizontally="true"
+			            android:gravity="center_vertical"
+			        	android:text="Server settings"/>
+			    </RelativeLayout>
+			    
+	       		<LinearLayout
+		       	android:layout_width="fill_parent" 
+		       	android:layout_height="wrap_content"
+		       	android:paddingLeft="6px"
+  					android:paddingRight="6px"
+		       	android:orientation="vertical"
+		       	android:layout_weight="1">
+	       			<TextView 
+	       			android:text="Server" 
+	       			android:layout_width="wrap_content" 
+	       			android:layout_height="wrap_content"/>
+		       		<EditText 					
+		       			android:id="@+id/profile_server_address"
+						android:layout_height="wrap_content" 
+						android:layout_width="fill_parent"	
+						android:hint="Enter server address"/>	
+	       		</LinearLayout>
+	       		<LinearLayout
+		       	android:layout_width="fill_parent" 
+		       	android:layout_height="wrap_content"
+		       	android:paddingLeft="6px"
+  					android:paddingRight="6px"
+		       	android:orientation="vertical"
+		       	android:layout_weight="1">
+	       			<TextView 
+	       			android:text="Port" 
+	       			android:layout_width="wrap_content" 
+	       			android:layout_height="wrap_content"/>
+		       		<EditText 			
+		       			android:id="@+id/profile_server_port"		
+						android:layout_height="wrap_content" 
+						android:layout_width="fill_parent"	
+						android:hint="Enter port number" android:numeric="integer|signed"/>	
+	       		</LinearLayout>
+	       			       		
+	       		<RelativeLayout     
+			        style="?android:attr/windowTitleBackgroundStyle"
+			        android:layout_width="fill_parent"
+			        android:layout_height="?android:attr/windowTitleSize">  
+			        <TextView         
+			            style="?android:attr/windowTitleStyle"
+			            android:layout_width="fill_parent"
+			            android:layout_height="fill_parent"
+			            android:background="@null"
+			            android:fadingEdge="horizontal"
+			            android:scrollHorizontally="true"
+			            android:gravity="center_vertical"
+			        	android:text="Chat rooms"/>
+			    </RelativeLayout>
+			    
+	       		<LinearLayout
+		       	android:layout_width="fill_parent" 
+		       	android:layout_height="wrap_content"
+		       	android:paddingLeft="6px"
+  					android:paddingRight="6px"
+		       	android:orientation="vertical"
+		       	android:layout_weight="1">
+	       			<TextView 
+	       			android:text="Default channels (one per line, can use key)" 
+	       			android:layout_width="wrap_content" 
+	       			android:layout_height="wrap_content"/>
+		       		<EditText 					
+		       			android:id="@+id/profile_chatrooms"
+						android:layout_height="wrap_content" 
+						android:layout_width="fill_parent"	
+						android:text="#android-chat"
+						android:hint="Enter channels"/>	
+	       		</LinearLayout>
+	       		
+	       		<RelativeLayout     
+			        style="?android:attr/windowTitleBackgroundStyle"
+			        android:layout_width="fill_parent"
+			        android:layout_height="?android:attr/windowTitleSize">  
+			        <TextView         
+			            style="?android:attr/windowTitleStyle"
+			            android:layout_width="fill_parent"
+			            android:layout_height="fill_parent"
+			            android:background="@null"
+			            android:fadingEdge="horizontal"
+			            android:scrollHorizontally="true"
+			            android:gravity="center_vertical"
+			        	android:text="Advanced settings (Optional)"/>
+			    </RelativeLayout>
+			    
+			    <LinearLayout
+		       	android:layout_width="fill_parent" 
+		       	android:layout_height="wrap_content"
+		       	android:paddingLeft="6px"
+  					android:paddingRight="6px"
+		       	android:orientation="vertical"
+		       	android:layout_weight="1">
+	       			<TextView 
+	       			android:text="Ident" 
+	       			android:layout_width="wrap_content" 
+	       			android:layout_height="wrap_content"/>
+		       		<EditText 					
+		       			android:id="@+id/profile_ident"
+						android:layout_height="wrap_content" 
+						android:layout_width="fill_parent"
+						android:text="fircuser" 	
+						android:hint="Enter ident"/>	
+	       		</LinearLayout>
+	       		
+	       		<LinearLayout
+		       	android:layout_width="fill_parent" 
+		       	android:layout_height="wrap_content"
+		       	android:paddingLeft="6px"
+  					android:paddingRight="6px"
+		       	android:orientation="vertical"
+		       	android:layout_weight="1">
+	       			<TextView 
+	       			android:text="Real name" 
+	       			android:layout_width="wrap_content" 
+	       			android:layout_height="wrap_content"/>
+		       		<EditText 					
+		       			android:id="@+id/profile_realname"
+						android:layout_height="wrap_content" 
+						android:layout_width="fill_parent"
+						android:text="androidfan" 	
+						android:hint="Enter name"/>	
+	       		</LinearLayout>
+	       <!--  		
+	       		LinearLayout
+		       	android:layout_width="fill_parent" 
+		       	android:layout_height="wrap_content"
+		       	android:paddingLeft="6px"
+  					android:paddingRight="6px"
+		       	android:orientation="vertical"
+		       	android:layout_weight="1">
+	       			<TextView 
+	       			android:text="Server password (Leave blank when not used)" 
+	       			android:layout_width="wrap_content" 
+	       			android:layout_height="wrap_content"/>
+		       		<EditText 					
+		       			android:id="@+id/profile_server_password"
+						android:layout_height="wrap_content" 
+						android:layout_width="fill_parent"	
+						android:hint="Enter (optional) password" android:password="true"/>	
+	       		</LinearLayout
+	       -->		
+			    <LinearLayout
+		       	android:layout_width="fill_parent" 
+		       	android:layout_height="wrap_content"
+		       	android:paddingLeft="6px"
+  					android:paddingRight="6px"
+		       	android:orientation="vertical"
+		       	android:layout_weight="1">
+	       			<TextView 
+	       			android:text="Encoding" 
+	       			android:layout_width="wrap_content" 
+	       			android:layout_height="wrap_content"/>
+		       		<Spinner 
+				        android:id="@+id/profile_encoding_spinner"
+				        android:layout_width="fill_parent"
+				        android:layout_height="wrap_content"
+				        android:prompt="@string/encoding_prompt"
+				    />
+	       		</LinearLayout>
+			    
+	       		<LinearLayout
+		       	android:layout_width="fill_parent" 
+		       	android:layout_height="wrap_content"
+		       	android:paddingLeft="6px"
+  					android:paddingRight="6px"
+		       	android:orientation="vertical"
+		       	android:layout_weight="1">
+	       			<TextView 
+	       			android:text="Perform on connect" 
+	       			android:layout_width="wrap_content" 
+	       			android:layout_height="wrap_content"/>
+		       		<EditText 					
+		       			android:id="@+id/profile_onconnect"
+						android:layout_height="wrap_content" 
+						android:layout_width="fill_parent"	
+						android:hint="Enter commands that need to be performed on connect. One command per line."/>	
+	       		</LinearLayout>	       		
+			</LinearLayout>
+      </ScrollView>      
+      <LinearLayout 
+      	android:id="@+id/linearLayout2" 
+       	android:layout_width="fill_parent" 
+       	android:layout_height="wrap_content"
+       	android:layout_alignParentBottom="true"
+       	android:background="#ff98c8e8"
+       	android:paddingLeft="5px" 
+			android:paddingRight="5px" 
+			android:paddingTop="5px" 
+			android:paddingBottom="0px">
+          <Button 
+          	android:text="Save profile" 
+          	android:id="@+id/profile_save" 
+          	android:layout_width="fill_parent" 
+          	android:layout_height="wrap_content"          	 
+          	android:layout_weight="1"/>
+          <Button 
+          	android:text="Cancel" 
+          	android:id="@+id/profile_cancel" 
+          	android:layout_width="fill_parent" 
+          	android:layout_height="wrap_content"          	
+          	android:layout_weight="1"/>
+	</LinearLayout>
+</RelativeLayout>

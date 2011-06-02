@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent" 
+	android:layout_height="fill_parent">
+	<FrameLayout
+	android:id="@+id/chat_frame" 
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:layout_above="@+id/ScrollView01">
+	</FrameLayout>
+	<ScrollView 		
+		android:id="@+id/ScrollView01"
+		android:layout_height="wrap_content" 
+		android:layout_width="fill_parent" 
+		android:background="#ff98c8e8"
+		android:layout_alignParentBottom="true">
+		<LinearLayout 
+			android:layout_height="wrap_content" 
+			android:layout_width="fill_parent" 
+			android:paddingLeft="5px" 
+			android:paddingRight="5px" 
+			android:paddingTop="5px" 
+			android:paddingBottom="0px">
+			<RelativeLayout 
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:layout_weight="1">
+				<EditText 
+					android:id="@+id/chat_input" 
+					android:layout_height="wrap_content" 
+					android:layout_width="fill_parent" 
+					android:paddingTop="7px" 
+					android:paddingBottom="10px" 
+					android:paddingLeft="11px" 
+					android:paddingRight="11px" 
+					android:maxLines="1" android:hint="Enter text here"/>
+			</RelativeLayout>
+			<Button 
+				android:id="@+id/chat_submit"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" 
+				android:text="Send" 
+				android:layout_gravity="center_vertical" 
+				android:paddingBottom="11px" 
+				android:paddingLeft="11px" 
+				android:paddingRight="11px" 
+				android:paddingTop="7px"/>
+		</LinearLayout>
+	</ScrollView>
+</RelativeLayout>
