@@ -30,7 +30,9 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Message;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -49,6 +51,7 @@ import android.widget.Toast;
 
 import com.falcon4ever.fIRC3.service.ChatService;
 import com.falcon4ever.fIRC3.service.ChatService.LocalBinder;
+import com.falcon4ever.fIRC3.service.IRCConnection;
 import com.falcon4ever.fIRC3.utils.DBProfileManager;
 import com.falcon4ever.fIRC3.utils.ProfileState;
 
@@ -62,6 +65,39 @@ public class ServerlistActivity extends ListActivity {
 	private ChatService mService;
 	private boolean mBound = false;
     
+	private Handler IncomingHandler = new Handler()
+	{
+		public void handleMessage(Message msg)
+		{
+			switch (msg.what)
+			{					
+				// Initialize panels
+				case ChatService.MSG_UI_SERVERLIST_UPDATE:				
+				{
+					updateConnectionStatus();					
+				}
+				break;
+				
+				default:
+					Log.e(getClass().getSimpleName(), "Unhandled message IncomingHandler " + msg.what);
+			}
+		}
+	};
+	
+	private void updateConnectionStatus()
+	{
+		// Cycle over current server list
+		for(int i = 0; i < mServers.size(); i++) 
+        {
+			mServers.get(i).setConnected(						
+					mService.getConnectionStatus(
+							mServers.get(i).getProfileId()
+							)
+			);
+        }
+		mAdapter.notifyDataSetChanged();
+	}
+	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,8 +147,8 @@ public class ServerlistActivity extends ListActivity {
         	ProfileState ps = new ProfileState();
         	ps.setProfileId(Integer.parseInt(values.get(0).toString()));
         	ps.setProfileName(values.get(1).toString());
-        	ps.setConnected(false);
-        	
+        	ps.setConnected(IRCConnection.CONNECTION_OFFLINE);
+        	        	
         	Log.d(getClass().getSimpleName(), "Loading: pID " + values.get(0).toString() + ", ProfileName " + values.get(1).toString());        	
         	
         	mServers.add(ps);
@@ -131,10 +167,14 @@ public class ServerlistActivity extends ListActivity {
             LocalBinder binder = (LocalBinder) service;
             mService = binder.getService();
             mBound = true;
+            mService.setHandler(IncomingHandler);
+            
+            updateConnectionStatus();
         }
 
         public void onServiceDisconnected(ComponentName arg0) {
         	mBound = false;
+        	mService.setHandler(null);
         }
     };
     
@@ -195,7 +235,7 @@ public class ServerlistActivity extends ListActivity {
     {
         super.onListItemClick(l, v, position, id);
                        
-        if(!mService.getConnectionStatus(mServers.get(position).getProfileId()))
+        if(mService.getConnectionStatus(mServers.get(position).getProfileId()) < 1)
         {
         	Toast.makeText(this, "Profile is not connected", Toast.LENGTH_SHORT).show();	
         	return;        
@@ -307,18 +347,26 @@ public class ServerlistActivity extends ListActivity {
                 
                 if(tvServerStatus != null)
                 {                    	
-                	if(o.getConnected() == true)
-                		tvServerStatus.setText("Status: Connected");
+                	if(o.getConnected() == IRCConnection.CONNECTION_OFFLINE)
+                		tvServerStatus.setText("Status: Offline");
+                	else if(o.getConnected() == IRCConnection.CONNECTION_CONNECTING)
+                		tvServerStatus.setText("Status: Connecting...");
+                	else if(o.getConnected() == IRCConnection.CONNECTION_ONLINE)
+                		tvServerStatus.setText("Status: Online");
                 	else
-                		tvServerStatus.setText("Status: Disconnected");                    	
+                		tvServerStatus.setText("Status: Unknown");                    	
                 }
                 
                 if(ivServerStatus != null)
                 {
-                	if(o.getConnected() == true)
+                	if(o.getConnected() == IRCConnection.CONNECTION_OFFLINE)
+                		ivServerStatus.setImageDrawable(getContext().getResources().getDrawable(android.R.drawable.presence_offline));
+                	else if(o.getConnected() == IRCConnection.CONNECTION_CONNECTING)
+                		ivServerStatus.setImageDrawable(getContext().getResources().getDrawable(android.R.drawable.presence_invisible));
+                	else if(o.getConnected() == IRCConnection.CONNECTION_ONLINE)
                 		ivServerStatus.setImageDrawable(getContext().getResources().getDrawable(android.R.drawable.presence_online));
                 	else
-                		ivServerStatus.setImageDrawable(getContext().getResources().getDrawable(android.R.drawable.presence_offline));                    	
+                		ivServerStatus.setImageDrawable(getContext().getResources().getDrawable(android.R.drawable.presence_offline));                	               	
                 }
             }
             

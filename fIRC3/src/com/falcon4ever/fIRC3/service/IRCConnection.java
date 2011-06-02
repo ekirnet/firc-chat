@@ -56,6 +56,12 @@ public class IRCConnection implements Runnable {
 	private BufferedReader mIrcInput = null;
 	private BufferedWriter mIrcOutput = null;	
 		
+	private int mConnectionStatus = CONNECTION_OFFLINE;
+	
+	public synchronized int getConnectionStatus() {
+		return mConnectionStatus;
+	}
+	
 	// Profile and encoding
 	private ProfileState mProfile;
 	private String mEncoding;
@@ -75,9 +81,8 @@ public class IRCConnection implements Runnable {
 	public static final int MAX_CHAT_HISTORY = 1000;
 	
 	public static final int CONNECTION_OFFLINE = 0;
-	public static final int CONNECTION_WORKING = 1;
-	public static final int CONNECTION_CONNECTED = 2;	
-	public static final int CONNECTION_DISCONNECTED = 3;
+	public static final int CONNECTION_CONNECTING = 1;
+	public static final int CONNECTION_ONLINE = 2;
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////  
     // IRCConnection
@@ -90,19 +95,31 @@ public class IRCConnection implements Runnable {
 		mEncoding = encoding;
 		mParent = parent;
 		mCurrentScreen = 0;
+		updateConnectionStatus(CONNECTION_OFFLINE);
+	}
+	
+	public synchronized void updateConnectionStatus(int connectionStatus)
+	{
+		mConnectionStatus = connectionStatus;
+		
+		if(mParent.getHandler() != null)
+		{				
+			mParent.getHandler().obtainMessage(ChatService.MSG_UI_SERVERLIST_UPDATE).sendToTarget();			
+		}
 	}
 	
 	public void run() 
 	{
 		addChannel("server");		
 		Log.d(getClass().getSimpleName(), "Starting profile: " + mProfile.getProfile_name());
-		
+				
+		updateConnectionStatus(CONNECTION_CONNECTING);
 		try {
 			//1. creating a socket to connect to the server
 			mIrcSocket = new Socket(mProfile.getProfileServer(), mProfile.getProfilePort());
 			
 			Log.d(getClass().getSimpleName(), mProfile.getProfile_name() + ": Connected to " + mProfile.getProfileServer() + " in port " + mProfile.getProfilePort());
-					
+						
 			//2. get Input and Output streams
 			mIrcInput = new BufferedReader(new InputStreamReader(mIrcSocket.getInputStream(), mEncoding));
 			mIrcOutput = new BufferedWriter(new OutputStreamWriter(mIrcSocket.getOutputStream(), mEncoding));
@@ -116,7 +133,7 @@ public class IRCConnection implements Runnable {
 			
 			// 4.1.3 User message
 			sendMessage("USER " + mProfile.getProfileIdent() + " 0 * :" + mProfile.getProfileRealname());
-			
+						
 			//3: Communicating with the server
 			do
 			{			 
@@ -157,7 +174,8 @@ public class IRCConnection implements Runnable {
 		}				
 		
 		Log.d(getClass().getSimpleName(), mProfile.getProfile_name() + ": Finished");
-		mIrcThread = null;		
+		updateConnectionStatus(CONNECTION_OFFLINE);
+		mIrcThread = null;
 	}
 	
 	///////////////////////////////////////////////////////////////////////////////////////////////  
@@ -200,6 +218,8 @@ public class IRCConnection implements Runnable {
 		//else if(cmds_item[1].equalsIgnoreCase("422"))
 		else if(cmds_item[1].equalsIgnoreCase("376"))
 		{
+			updateConnectionStatus(CONNECTION_ONLINE);
+			
 			String[] chatrooms = null;
 			chatrooms = mProfile.getProfileChatrooms().split("\n");
 			
@@ -375,4 +395,6 @@ public class IRCConnection implements Runnable {
 				mParent.getHandler().obtainMessage(ChatService.MSG_UI_UPDATE,0,0,msg).sendToTarget();			
 		}
 	}
+
+	
 }

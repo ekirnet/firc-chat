@@ -38,7 +38,8 @@ public class ChatService extends Service {
 	
 	public static final int MSG_UI_INIT = 1;
 	public static final int MSG_UI_INIT_DONE = 2;
-	public static final int MSG_UI_UPDATE = 3;
+	public static final int MSG_UI_UPDATE = 3;	
+	public static final int MSG_UI_SERVERLIST_UPDATE = 4;
 		
 	private Handler mHandler;
 	private int mActiveProfile = -1;
@@ -99,7 +100,7 @@ public class ChatService extends Service {
     	ps.setProfileEncoding(Integer.parseInt(curProfile.get(9).toString()));
     	ps.setProfileOnconnect(curProfile.get(10).toString());
     	        	
-    	ps.setConnected(false);
+    	//ps.setConnected(false);
     		
     	String[] encoding_array = getResources().getStringArray(com.falcon4ever.fIRC3.R.array.encoding_array);
     	String profile_encoding = encoding_array[Integer.parseInt(curProfile.get(9).toString())];
@@ -157,7 +158,7 @@ public class ChatService extends Service {
         	ps.setProfileEncoding(Integer.parseInt(values.get(9).toString()));
         	ps.setProfileOnconnect(values.get(10).toString());
         	        	
-        	ps.setConnected(false);
+        	//ps.setConnected(false);
         		
         	String[] encoding_array = getResources().getStringArray(com.falcon4ever.fIRC3.R.array.encoding_array);
         	String profile_encoding = encoding_array[Integer.parseInt(values.get(9).toString())];
@@ -181,12 +182,12 @@ public class ChatService extends Service {
     	// TODO: Update status?
     }
     
-    public boolean getConnectionStatus(int profileId)
+    public int getConnectionStatus(int profileId)
     {
     	if(mConnectionList.containsKey(profileId))
-    		return true;
+    		return mConnectionList.get(profileId).getConnectionStatus();
     	else
-    		return false;
+    		return IRCConnection.CONNECTION_OFFLINE;
     }
      	
 	public IRCConnection getIrcConn(int profileId) 

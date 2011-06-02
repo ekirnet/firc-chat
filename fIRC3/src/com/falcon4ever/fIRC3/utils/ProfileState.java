@@ -35,7 +35,7 @@ public class ProfileState {
 	private int    mProfileEncoding;
 	private String mProfileOnconnect;
 	
-	private Boolean mConnected;	// Remove
+	private int    mConnected;
 
 	public int getProfileId() {
 		return mProfileId;
@@ -125,11 +125,11 @@ public class ProfileState {
 		mProfileOnconnect = profileOnconnect;
 	}
 
-	public Boolean getConnected() {
+	public int getConnected() {
 		return mConnected;
 	}
 
-	public void setConnected(Boolean connected) {
+	public void setConnected(int connected) {
 		mConnected = connected;
 	}	
 }
